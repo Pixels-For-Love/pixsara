@@ -34,6 +34,7 @@ return new class extends Migration
             $table->foreignId('charity_id');//->references('id')->on('charities');
 
 
+
             $table->timestamps();
 
 

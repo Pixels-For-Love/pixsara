@@ -31,6 +31,8 @@ class CanvasImageFactory extends Factory
         return [
             'title' => $this->faker->sentence(5),
             'slug' => $this->faker->slug(),
+            'width' => 500,
+            'height' => 500,
             'description' => $p,
 
             //

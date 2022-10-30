@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCanvasImageRequest;
 use App\Http\Requests\UpdateCanvasImageRequest;
+use App\Http\Resources\CanvasImageResource;
 use App\Models\CanvasImage;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CanvasImageController extends Controller
 {
@@ -16,6 +18,11 @@ class CanvasImageController extends Controller
     public function index()
     {
         //
+
+        return CanvasImageResource::collection(CanvasImage::all());
+
+        $canvases = CanvasImage::all();
+        return response()->json($canvases);
     }
 
     /**

@@ -5,6 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *
+ * @property int $id
+ * @property int $canvas_image_id
+ * @property int $user_id
+ * @property int $pos_x
+ * @property int $pos_y
+ * @property string $color
+ * @property string $charity
+ * @property float $payment_amount
+ * @property string $payment_source
+ * @property string $title
+ * @property string $paypal_transaction
+ * @property int $charity_id
+ *
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ *
+ *
+ *
+ */
 class CanvasImagePixel extends Model
 {
     use HasFactory;
@@ -16,6 +37,11 @@ class CanvasImagePixel extends Model
     public function canvasImage()
     {
         return $this->belongsTo(CanvasImage::class);
+    }
+
+    public function canvas()
+    {
+        return $this->canvasImage();
     }
 
     public function user()

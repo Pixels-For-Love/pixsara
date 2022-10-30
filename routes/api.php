@@ -16,4 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+
 });
+
+
+//Route::middleware('auth:sanctum')->group(function()
+//{
+    Route::prefix('canvas')->group(function(){
+       Route::get('/', 'App\Http\Controllers\CanvasImageController@index');
+       Route::get('/{id}', 'App\Http\Controllers\CanvasImageController@show');
+    });
+
+//});
