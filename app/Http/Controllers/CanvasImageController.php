@@ -19,7 +19,6 @@ class CanvasImageController extends Controller
     {
         //
 
-        return CanvasImageResource::collection(CanvasImage::all());
 
         $canvases = CanvasImage::all();
         return response()->json($canvases);
