@@ -2,21 +2,37 @@
 
 namespace Database\Factories;
 
+use App\Models\CanvasImage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CanvasImage>
- */
 class CanvasImageFactory extends Factory
 {
     /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = CanvasImage::class;
+
+    /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function definition()
     {
+        $p = '';
+        foreach($this->faker->paragraphs(rand(2,6)) as $paragraph){
+            $p .= $paragraph . "\r\n\r\n";
+        }
+
+        $p = trim($p);
+
         return [
+            'title' => $this->faker->sentence(5),
+            'slug' => $this->faker->slug(),
+            'description' => $p,
+
             //
         ];
     }

@@ -15,6 +15,16 @@ return new class extends Migration
     {
         Schema::create('canvas_images', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->unique();
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+
+            $table->integer('width')->nullable();
+            $table->integer('height')->nullable();
+
+            // $table->string('image_path')->nullable()->default(null);
+            $table->foreignId('user_id')->nullable()->index();
+
             $table->timestamps();
         });
     }

@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+
+use App\Models\CanvasImage;
+use App\Models\CanvasImagePixel;
 
 class CanvasImageSeeder extends Seeder
 {
@@ -15,5 +18,14 @@ class CanvasImageSeeder extends Seeder
     public function run()
     {
         //
+
+
+        CanvasImage::factory()->count(5)
+            ->create(['user_id' =>rand(1,1)]);
+
+        CanvasImage::factory()->count(5)
+            ->create(['user_id' =>rand(0,5)]);
+
+
     }
 }
