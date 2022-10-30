@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\CanvasImage;
 
+use App\Models\CanvasImage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -24,11 +25,11 @@ class CanvasImageRequestTest extends TestCase
      */
     public function it_gets_canvases()
     {
-        $response = $this->get('/api/canvas');
+       CanvasImage::factory(10)->create();
 
-        print_r($response->content());
+        $response = $this->getJson('/api/canvas');
 
-        print_r($response);
+
 
 
     }
