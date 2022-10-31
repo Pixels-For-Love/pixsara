@@ -31,7 +31,7 @@ return new class extends Migration
 
             $table->string('title', 50);
             $table->text('paypal_transaction')->nullable()->default(null);
-            $table->foreignId('charity_id');//->references('id')->on('charities');
+            $table->foreignId('charity_id')->nullable();//->references('id')->on('charities');
 
 
 

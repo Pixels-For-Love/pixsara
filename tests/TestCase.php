@@ -35,9 +35,9 @@ abstract class TestCase extends BaseTestCase
             'password' => 'password'
         ]);
 
-
         $this->actingAs($this->user);
 
+        $this->base_url = '/api';
 
     }
 }

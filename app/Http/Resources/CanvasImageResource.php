@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class CanvasImageResource extends JsonResource
 {
@@ -22,9 +23,6 @@ class CanvasImageResource extends JsonResource
             'width' => $this->width,
             'height' => $this->height,
             'user_id' => $this->user_id,
-
-            'updated_at' => $this->updated_at->toIso8601String(),
-            'updated_by' => new UserResource($this->updater),
         ];
     }
 }

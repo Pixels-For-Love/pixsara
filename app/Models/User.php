@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function canvases()
+    {
+        return $this->hasMany(CanvasImage::class);
+    }
+
+    public function pixels()
+    {
+        return $this->hasMany(CanvasImage::class);
+    }
+
+
+
 }

@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CanvasImageController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Route::middleware('auth:sanctum')->group(function()
 //{
     Route::prefix('canvas')->group(function(){
-       Route::get('/', 'App\Http\Controllers\CanvasImageController@index');
-       Route::get('/{id}', 'App\Http\Controllers\CanvasImageController@show');
+       Route::get('/', [CanvasImageController::class, 'index']);
+       Route::get('/{canvas}', [CanvasImageController::class, 'show']);
+       Route::post('/', [CanvasImageController::class, 'create']);
     });
 
 //});

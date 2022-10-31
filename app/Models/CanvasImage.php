@@ -26,6 +26,9 @@ class CanvasImage extends Model
 
     public $http_resource = CanvasImageResource::class;
 
+    protected $fillable = ['title','description','width','height', 'slug'];
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCanvasImageRequest;
 use App\Http\Requests\StoreCanvasImageRequest;
 use App\Http\Requests\UpdateCanvasImageRequest;
 use App\Http\Resources\CanvasImageResource;
 use App\Models\CanvasImage;
-use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class CanvasImageController extends Controller
 {
@@ -27,11 +29,17 @@ class CanvasImageController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CreateCanvasImageRequest $request, User $user)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request['title']);
+        print_r($data);
+
+        $canvas = auth()->user()->canvases()->create($data);
+
+        return (new CanvasImageResource($canvas))->response()
+            ->setStatusCode(201);
     }
 
     /**
