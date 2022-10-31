@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\HttpStatus;
 use App\Http\Requests\CreateCanvasImageRequest;
 use App\Http\Requests\StoreCanvasImageRequest;
 use App\Http\Requests\UpdateCanvasImageRequest;
@@ -34,12 +35,10 @@ class CanvasImageController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request['title']);
-        print_r($data);
-
         $canvas = auth()->user()->canvases()->create($data);
 
         return (new CanvasImageResource($canvas))->response()
-            ->setStatusCode(201);
+            ->setStatusCode(HttpStatus::CREATED);
     }
 
     /**

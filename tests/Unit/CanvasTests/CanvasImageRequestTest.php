@@ -5,7 +5,9 @@ namespace Tests\Unit\CanvasTests;
 use App\Models\CanvasImage;
 use App\Models\CanvasImagePixel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
+use App\Http\HttpStatus;
 
 class CanvasImageRequestTest extends TestCase
 {
@@ -46,11 +48,22 @@ class CanvasImageRequestTest extends TestCase
             'title' => 'Canvas Title',
             'description' => 'Canvas Description',
             'width' => '100',
-            'height' => '100',
+            'height' => '150',
         ];
 
         $response = $this->postJson('/api/canvas', $canvasData);
-        $response->assertStatus(201);
+
+        $response->assertStatus(HttpStatus::CREATED)
+            ->assertJsonPath('data.id', 1)
+            ->assertJsonPath('data.title', $canvasData['title'])
+            ->assertJsonPath('data.description', $canvasData['description'])
+            ->assertJsonPath('data.width', $canvasData['width'])
+            ->assertJsonPath('data.height', $canvasData['height'])
+            ->assertJsonPath('data.user_id', $this->user->id)
+
+        ;
+
+
     }
 
 
