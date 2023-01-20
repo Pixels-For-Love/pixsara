@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\CanvasTests;
+namespace Tests\Unit\CanvasImageTests;
 
 use App\Models\CanvasImage;
 use App\Models\CanvasImagePixel;

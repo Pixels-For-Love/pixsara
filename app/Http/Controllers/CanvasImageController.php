@@ -9,22 +9,41 @@ use App\Http\Requests\UpdateCanvasImageRequest;
 use App\Http\Resources\CanvasImageResource;
 use App\Models\CanvasImage;
 use App\Models\User;
+use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class CanvasImageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        return CanvasImageResource::collection(
+            QueryBuilder::for(CanvasImage::class)
+                ->allowedFilters([
+                    'title',
+                    'description',
+                    'slug',
+                    'width',
+                    'height',
+                    'user_id',
+                ])
+//                ->defaultSort('-created_at')
+//                ->allowedSorts('created_at', 'updated_at')
+                ->paginate(20)
+        );
         //
-
-
-        $canvases = CanvasImage::all();
-        return response()->json($canvases);
+//        $canvases = QueryBuilder::for(CanvasImage::class)
+//            ->allowedFilters(['title', 'description', 'slug', 'width', 'height', 'user_id'])
+//            ->allowedSorts(['title', 'description', 'slug', 'width', 'height', 'user_id'])
+//            ->allowedIncludes(['pixels'])
+//            ->paginate(20);
+//
+//
+//        return $this->sendResponse(CanvasImageResource::collection($canvases), 'Success');
     }
 
     /**
