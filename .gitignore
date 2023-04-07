@@ -2,5 +2,5 @@
  .phpunit.result.cache
  npm_modules/
  vendor/
-
+.env
 
